@@ -79,38 +79,56 @@ const insertSampleData = async (db) => {
   // Insert sample KCA services (Ukrainian certification authorities)
   const services = [
     {
-      name: 'АЦСК ІДД ДПС України (OCSP)',
-      short_name: 'acsk-idd-ocsp',
-      description: 'OCSP сервісAccredited Center of Certification Services',
-      service_type: 'OCSP',
-      endpoint_url: 'http://acsk.privatbank.ua/services/ocsp/',
-      check_method: 'GET',
-      expected_status: 200
-    },
-    {
-      name: 'ІДД ДПС України (CRL)',
-      short_name: 'idd-crl',
-      description: 'CRL Distribution Point Information and Reference Directory',
-      service_type: 'CRL',
-      endpoint_url: 'http://iit.com.ua/download/productfiles/CACertificates.p7b',
-      check_method: 'HEAD',
-      expected_status: 200
-    },
-    {
-      name: 'Приватбанк АЦСК (TSP)',
-      short_name: 'privatbank-tsp',
-      description: 'Timestamp Service PrivatBank',
-      service_type: 'TSP',
-      endpoint_url: 'http://acsk.privatbank.ua/services/tsp/',
-      check_method: 'GET',
-      expected_status: 200
-    },
-    {
-      name: 'Центральний засвідчувальний орган',
+      name: 'Центральний засвідчувальний орган (ЦЗО)',
       short_name: 'czo-main',
       description: 'Main Central Certification Authority service',
       service_type: 'CA',
       endpoint_url: 'https://czo.gov.ua/',
+      check_method: 'GET',
+      expected_status: 200
+    },
+    {
+      name: 'ІДД ДПС України - Головна сторінка',
+      short_name: 'idd-main',
+      description: 'Information and Reference Directory of STS main page',
+      service_type: 'CA',
+      endpoint_url: 'https://acskidd.gov.ua/',
+      check_method: 'GET',
+      expected_status: 200
+    },
+    {
+      name: 'АЦСК ІДД ДПС - OCSP сервіс',
+      short_name: 'acsk-idd-ocsp',
+      description: 'OCSP service of ACSK IDD',
+      service_type: 'OCSP',
+      endpoint_url: 'http://ocsp.acskidd.gov.ua/',
+      check_method: 'GET',
+      expected_status: 200
+    },
+    {
+      name: 'АЦСК ІДД ДПС - TSP сервіс',
+      short_name: 'acsk-idd-tsp',
+      description: 'Timestamp service of ACSK IDD',
+      service_type: 'TSP',
+      endpoint_url: 'http://acskidd.gov.ua/services/tsp/',
+      check_method: 'GET',
+      expected_status: 200
+    },
+    {
+      name: 'Приватбанк АЦСК - Головна',
+      short_name: 'privatbank-ca',
+      description: 'PrivatBank ACSK main service',
+      service_type: 'CA',
+      endpoint_url: 'https://acsk.privatbank.ua/',
+      check_method: 'GET',
+      expected_status: 200
+    },
+    {
+      name: 'Тестовий сервіс (завжди недоступний)',
+      short_name: 'test-unavailable',
+      description: 'Test service for incident detection - always fails',
+      service_type: 'CA',
+      endpoint_url: 'https://this-service-does-not-exist-kca-test-12345.com/',
       check_method: 'GET',
       expected_status: 200
     }

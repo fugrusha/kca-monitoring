@@ -98,6 +98,13 @@ kca-monitoring/
 
 - `GET /api/incidents` - Get all active incidents
 
+### Monitoring
+
+- `GET /api/monitoring/status` - Get monitoring service status
+- `POST /api/monitoring/check` - Manually trigger a monitoring check
+- `POST /api/monitoring/start` - Start the monitoring scheduler
+- `POST /api/monitoring/stop` - Stop the monitoring scheduler
+
 ### Health Check
 
 - `GET /api/health` - API health check
@@ -142,11 +149,11 @@ LOG_LEVEL=info
 - [x] RESTful API
 - [x] Data models
 
-### Phase 2: Monitoring Service (Next)
-- [ ] Health check implementation
-- [ ] Scheduled monitoring jobs
-- [ ] Incident detection and tracking
-- [ ] Alert system
+### Phase 2: Monitoring Service ✅ (Complete)
+- [x] Health check implementation
+- [x] Scheduled monitoring jobs
+- [x] Incident detection and tracking
+- [x] Logging system
 
 ### Phase 3: Frontend Dashboard
 - [ ] React/Vue.js setup
@@ -164,10 +171,24 @@ LOG_LEVEL=info
 
 The application monitors the following Ukrainian KCA services:
 
-1. **АЦСК ІДД ДПС України (OCSP)** - OCSP service
-2. **ІДД ДПС України (CRL)** - CRL Distribution Point
-3. **Приватбанк АЦСК (TSP)** - Timestamp Service
-4. **Центральний засвідчувальний орган** - Central Certification Authority
+1. **Центральний засвідчувальний орган (ЦЗО)** - Central Certification Authority
+2. **ІДД ДПС України** - Information and Reference Directory main page
+3. **АЦСК ІДД ДПС - OCSP** - OCSP service
+4. **АЦСК ІДД ДПС - TSP** - Timestamp service
+5. **Приватбанк АЦСК** - PrivatBank ACSK main service
+6. **Test Service** - Test service for incident detection (always unavailable)
+
+## Features Implemented
+
+### Phase 2 Features
+
+- **Automated Health Checks**: Monitors all KCA services at configurable intervals (default: 5 minutes)
+- **Service Type Support**: Different validation logic for OCSP, TSP, CRL, and CA services
+- **Response Time Tracking**: Records response times for each health check
+- **Incident Management**: Automatically creates incidents when services go down and resolves them when restored
+- **Comprehensive Logging**: Color-coded console output and file-based logging
+- **Scheduler Control**: Start/stop monitoring via API or automatic startup
+- **Manual Checks**: Trigger on-demand health checks via API
 
 ## Contributing
 
