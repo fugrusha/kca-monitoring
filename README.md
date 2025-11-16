@@ -78,7 +78,8 @@ kca-monitoring/
    ```
 
 5. **Access the application**
-   - Web Interface: http://localhost:3000
+   - **Dashboard**: http://localhost:3000/dashboard (Main monitoring interface)
+   - Landing Page: http://localhost:3000
    - API: http://localhost:3000/api
 
 ## API Endpoints
@@ -155,11 +156,14 @@ LOG_LEVEL=info
 - [x] Incident detection and tracking
 - [x] Logging system
 
-### Phase 3: Frontend Dashboard
-- [ ] React/Vue.js setup
-- [ ] Real-time status display
-- [ ] Interactive charts (Chart.js)
-- [ ] Responsive design
+### Phase 3: Frontend Dashboard ✅ (Complete)
+- [x] Interactive web dashboard (vanilla JavaScript)
+- [x] Real-time status display with service cards
+- [x] Interactive charts (Chart.js) - uptime and response time
+- [x] Responsive design with modern UI
+- [x] Auto-refresh functionality (30-second intervals)
+- [x] Incident timeline display
+- [x] Detailed statistics table
 
 ### Phase 4: Advanced Features
 - [ ] WebSocket for real-time updates
@@ -180,7 +184,7 @@ The application monitors the following Ukrainian KCA services:
 
 ## Features Implemented
 
-### Phase 2 Features
+### Phase 2 Features (Backend Monitoring)
 
 - **Automated Health Checks**: Monitors all KCA services at configurable intervals (default: 5 minutes)
 - **Service Type Support**: Different validation logic for OCSP, TSP, CRL, and CA services
@@ -189,6 +193,21 @@ The application monitors the following Ukrainian KCA services:
 - **Comprehensive Logging**: Color-coded console output and file-based logging
 - **Scheduler Control**: Start/stop monitoring via API or automatic startup
 - **Manual Checks**: Trigger on-demand health checks via API
+
+### Phase 3 Features (Interactive Dashboard)
+
+- **Real-time Dashboard**: Modern web interface with live status updates
+- **Service Status Cards**: Visual cards showing status, response time, and last check time
+- **Interactive Charts**:
+  - Bar chart showing uptime percentage for each service
+  - Line chart displaying average response times
+- **Statistics Overview**: Header with quick stats (total services, active, down, avg response time)
+- **Detailed Statistics Table**: Comprehensive table with uptime %, total checks, and success rates
+- **Incident Display**: Active incidents shown with severity and duration
+- **Auto-refresh**: Configurable automatic data refresh every 30 seconds
+- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
+- **Color-coded Status**: Green (up), red (down), yellow (unknown) status indicators
+- **Ukrainian Language Support**: All UI text in Ukrainian with English labels
 
 ## Contributing
 
