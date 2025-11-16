@@ -23,17 +23,28 @@ app.use(express.static(path.join(__dirname, '../public')));
 // API routes
 app.use('/api', apiRoutes);
 
-// Root endpoint
+// Dashboard route
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/dashboard.html'));
+});
+
+// Root endpoint (landing page)
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
-// 404 handler
-app.use((req, res) => {
-  res.status(404).json({
-    success: false,
-    error: 'Endpoint not found'
-  });
+// 404 handler for non-API routes
+app.use((req, res, next) => {
+  // If it's an API request, return JSON error
+  if (req.path.startsWith('/api/')) {
+    res.status(404).json({
+      success: false,
+      error: 'Endpoint not found'
+    });
+  } else {
+    // For non-API requests, serve the 404 page or redirect
+    res.status(404).send('<h1>404 - Page Not Found</h1><p><a href="/">Go to Home</a> | <a href="/dashboard">Go to Dashboard</a></p>');
+  }
 });
 
 // Error handler

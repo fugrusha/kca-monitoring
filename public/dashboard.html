@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KCA Monitoring Dashboard - Моніторинг УЦС</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>🔐 KCA Monitoring</h1>
+                    <p>Моніторинг Українських Кваліфікованих Центрів Сертифікації</p>
+                </div>
+                <div class="header-stats">
+                    <div class="stat-card">
+                        <div class="stat-label">Всього сервісів</div>
+                        <div class="stat-value" id="totalServices">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Активні</div>
+                        <div class="stat-value up" id="servicesUp">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Недоступні</div>
+                        <div class="stat-value down" id="servicesDown">-</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Середній час відповіді</div>
+                        <div class="stat-value" id="avgResponse">-</div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <span class="last-update">Оновлено: <span id="lastUpdate">-</span></span>
+                <button class="btn btn-refresh" onclick="refreshData()">🔄 Оновити</button>
+                <label class="auto-refresh-toggle">
+                    <input type="checkbox" id="autoRefresh" checked>
+                    <span>Авто-оновлення (30с)</span>
+                </label>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Services Status Section -->
+            <section class="section">
+                <h2 class="section-title">Статус Сервісів</h2>
+                <div class="services-grid" id="servicesGrid">
+                    <!-- Service cards will be inserted here -->
+                    <div class="loading">Завантаження даних...</div>
+                </div>
+            </section>
+
+            <!-- Charts Section -->
+            <section class="section">
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <h3 class="chart-title">Доступність (24 години)</h3>
+                        <canvas id="uptimeChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3 class="chart-title">Час Відповіді (мс)</h3>
+                        <canvas id="responseTimeChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Incidents Section -->
+            <section class="section">
+                <h2 class="section-title">Активні Інциденти</h2>
+                <div class="incidents-container" id="incidentsContainer">
+                    <div class="loading">Завантаження інцидентів...</div>
+                </div>
+            </section>
+
+            <!-- Statistics Table -->
+            <section class="section">
+                <h2 class="section-title">Детальна Статистика (24 години)</h2>
+                <div class="stats-table-container">
+                    <table class="stats-table" id="statsTable">
+                        <thead>
+                            <tr>
+                                <th>Сервіс</th>
+                                <th>Тип</th>
+                                <th>Доступність (%)</th>
+                                <th>Всього перевірок</th>
+                                <th>Успішних</th>
+                                <th>Середній час (мс)</th>
+                                <th>Статус</th>
+                            </tr>
+                        </thead>
+                        <tbody id="statsTableBody">
+                            <tr>
+                                <td colspan="7" class="loading">Завантаження статистики...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>KCA Monitoring System | Phase 3: Interactive Dashboard |
+                <a href="/api" target="_blank">API Docs</a> |
+                <a href="/">Home</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>
